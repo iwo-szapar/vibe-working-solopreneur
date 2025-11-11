@@ -13,12 +13,17 @@ Your AI-powered second brain that compounds knowledge across all your work domai
 - **Planning system** - Break complex tasks into ≤10 min steps
 - **Safety system** - Prevents destructive operations, manages rate limits
 
-**Installed Use Cases (C# Developer & Analytics Persona):**
-1. `dev-workflow` - C# development, architecture, code review
-2. `data-analysis-workflow` - SQL queries, data analysis, insights generation
-3. `project-workflow` - Complex project management and task tracking
-4. `idea-capture-workflow` - Voice/text idea capture for business and technical ideas
-5. **Context preservation** - Save and restore conversation context to combat conversation limits
+**Available NOW (Ready to Use):**
+1. **Context preservation system** - Save/restore conversation context (solves your #1 pain point!)
+2. **C# project structure** - Complete templates for context, tasks, patterns, notes
+3. **C# architecture framework** - Document tech stack, decisions, patterns
+4. **Pattern library system** - Extract and reuse C# patterns (LOW/MEDIUM/HIGH confidence)
+5. **Direct Claude interaction** - Context-aware C# code generation using your documented patterns
+
+**Planned for Future (Coming Soon):**
+- Slash commands (`/learn`, `/overview`, `/switch`) - Currently use direct conversation
+- Automated skills and workflows - Currently manual but effective
+- Voice input integration - Can use Windows dictation (Win+H) with copy/paste
 
 **Built-in Safety:**
 - ✅ Blocks destructive operations (via `permissions.deny` in settings)
@@ -29,119 +34,149 @@ Your AI-powered second brain that compounds knowledge across all your work domai
 ## Quick Start
 
 ### First Time? Start Here 👋
-**Read ONBOARDING.md** - 5-phase setup guide (30 minutes)
-- Validates your Windows platform and development environment
-- Configures C# development tools (.NET SDK, VS Code/VS Community)
-- Sets up voice input options (Windows dictation or Claude mobile)
-- Creates your C# project structure
-- Walks through core workflows for code generation and context preservation
+**Read ONBOARDING.md** - 2-hour practical onboarding session
+- Discover and import your existing C# documentation
+- Set up context preservation workflow (solve conversation limit frustration!)
+- Extract 3-5 C# patterns from your existing code
+- Live coding demo with context-aware generation
+- Build your daily workflow for sustainable 20 hr/week savings
 
-### Daily Workflow
-```bash
-# Morning: See what's urgent
-/overview
+**Perfect for your 12/11/2025 session (10:00-12:00 GMT+2)**
 
-# Switch to your C# project
-/switch dominic-csharp-app
+### Daily Workflow (What's Available Now)
 
-# For complex C# features (>15 min): Plan first
-/plan Add user authentication module to C# application
-/step              # Execute step 1
-/step              # Execute step 2 (incremental progress)
-/plan-status       # Check progress
+**Morning - Start with Full Context:**
+```
+You: "I'm working on [C# project]. Let me restore context:"
+     [Share: projects/dominic-csharp-app/context.md]
+     [Share: projects/dominic-csharp-app/patterns.md]
+     [Share: context-snapshots/2025-11-12-latest.md]
 
-# For data analysis tasks
-/query "Get top 10 customers by order value last month"
+Claude: [Reads all files, understands full context]
 
-# Capture ideas on the go
-/idea "Implement caching layer for frequently accessed data"
+You: "I need to add user authentication to my C# app"
 
-# CRITICAL: Save context before hitting conversation limit
-/context-save      # Preserve current work state
-
-# End of day: Extract learnings
-/learn
-/grow              # Check brain health
+Claude: [Generates code using YOUR patterns, YOUR style, YOUR architecture]
 ```
 
-### Core Commands
+**During the Day - Context-Aware Development:**
+- Ask for C# code generation using your documented patterns
+- Request SQL queries for data analysis
+- Discuss architectural decisions (I'll reference your docs)
+- Get help with debugging using project context
 
-**Planning & Execution:**
-- `/plan [goal]` - Break complex task into 5-step plan (≤10 min each)
-- `/step` - Execute next step incrementally with auto-checkpoint
-- `/plan-status` - Show progress, time tracking, blockers
+**Before Conversation Limit - Save Context:**
+```
+1. Create file: context-snapshots/2025-11-12-1530-auth-module.md
+2. Fill in template (3-5 minutes):
+   - Current task and progress
+   - Code in progress
+   - Decisions made
+   - Next steps
+3. Next conversation: Share this file to restore context instantly
+```
 
-**Daily Workflow:**
-- `/overview` - Morning dashboard for your project
-- `/switch [project]` - Zero-overhead context switching
-- `/learn` - Extract patterns from recent work
-- `/grow` - Brain health metrics and ROI
+**Pattern Discovery - Build Your Library:**
+- After completing features, document patterns in `patterns.md`
+- Start as LOW confidence, promote to MEDIUM after 3 uses, HIGH after 5
+- Reuse patterns in future work (15-30 min saved per application)
 
-**Context Preservation (Critical for Conversation Limits):**
-- `/context-save` - Save current conversation state before hitting limit
-- `/context-restore [snapshot]` - Restore previous conversation context
-- `/recall [topic]` - Search all memories
+### How to Work with This System
 
-**Productivity:**
-- `/idea [text]` - Quick idea capture
-- `/add-task [description]` - Add task to current project
+**Direct Conversation Approach (Available Now):**
 
-**C# & Data Analysis:**
-- `/query [question]` - Generate SQL queries for data analysis
-- `/code-review [file]` - Review C# code for issues
+Rather than slash commands (coming later), use natural conversation with file sharing:
+
+1. **Share Context Files:**
+   - "Here's my project context: [paste or share context.md]"
+   - "Here are my patterns: [paste or share patterns.md]"
+   - "Restore from: [paste or share context snapshot]"
+
+2. **Request C# Code:**
+   - "Generate a UserService class following my documented patterns"
+   - "Create Entity Framework migration for User table"
+   - "Add input validation using FluentValidation"
+
+3. **Get SQL Queries:**
+   - "Write a SQL query to get top 10 customers by order value"
+   - "Generate a report query for last month's sales"
+
+4. **Document Patterns:**
+   - After I help you, capture the pattern in `patterns.md`
+   - Include: what it does, when to use it, code example
+   - Mark confidence: LOW (first use) → MEDIUM (3 uses) → HIGH (5+ uses)
+
+5. **Save Context:**
+   - Use template in `context-snapshots/TEMPLATE.md`
+   - Create new file before conversation limit
+   - Restore in next conversation by sharing the file
+
+**Future Enhancement - Slash Commands:**
+Commands like `/learn`, `/overview`, `/switch` will be added in Phase 2 for automated workflows
 
 ## Architecture
 
-**Commands** → **Skills** → **Memory**
+**You** ↔ **Claude** ↔ **Documented Knowledge**
 
-This second brain uses a three-layer architecture:
+This second brain is built on:
 
-1. **Commands** (`.claude/commands/`): User-facing slash commands like `/learn`, `/recall`, `/overview`
-2. **Skills** (`.claude/skills/`): Executable workflows with examples, tests, and progressive disclosure (10 skills, 43 files)
-3. **Memory** (`memory/`): Knowledge storage (semantic, episodic, procedural)
+1. **Your Documented Knowledge** (`memory/`, `projects/`):
+   - Tech stack and architecture decisions
+   - C# patterns you've discovered
+   - Project context and constraints
+   - Context snapshots for conversation continuity
 
-Each command invokes one or more skills for execution. Skills use progressive disclosure to load only what's needed.
+2. **Claude's Context Awareness**:
+   - Reads your documentation
+   - Applies your patterns
+   - Generates code in your style
+   - Maintains conversation context
 
-## Structure
+3. **Continuous Improvement**:
+   - Extract patterns from completed work
+   - Document architectural decisions
+   - Promote pattern confidence over time
+   - Build reusable knowledge library
+
+**Future:** Slash commands (`.claude/commands/`) and automated skills will be added in Phase 2
+
+## Repository Structure
 
 ```
-.claude/
-├── commands/         # User-facing slash commands (11 commands)
-│   ├── plan.md              # NEW: Break tasks into steps
-│   ├── step.md              # NEW: Incremental execution
-│   ├── plan-status.md       # NEW: Progress tracking
-│   ├── learn.md
-│   ├── overview.md
-│   └── ...
-├── skills/          # 10 executable skills with examples & tests
-│   ├── content-generation/  # NEW: Blog → LinkedIn → Video
-│   ├── learn-extraction/
-│   ├── memory-recall/
-│   └── ...
-├── hooks/           # NEW: Safety and guidance
-│   └── user-prompt-submit.sh  # Context-aware micro-guidance
-└── agents/          # Specialized AI agents
-
 memory/
-├── semantic/        # What you know (facts, patterns)
-├── episodic/       # What you've done (experiences)
-└── procedural/     # How you do things (workflows)
+├── semantic/                # What you know (C# patterns, tech decisions)
+│   ├── tech/
+│   │   └── architecture-decisions.md  # Your tech stack & decisions
+│   ├── patterns/            # Cross-cutting patterns
+│   └── ideas/               # Business and technical ideas
+├── episodic/               # What you've done (completed work)
+└── procedural/             # How you do things (workflows)
 
-projects/           # Your active projects
-├── dominic-csharp-app/      # Your C# application (side business)
-│   ├── context.md           # Project details, tech stack, architecture
-│   ├── tasks.md             # Current tasks and priorities
-│   ├── patterns.md          # C#-specific patterns discovered
-│   └── notes.md             # Architecture decisions, meeting notes
-├── fulltime-analytics/      # Optional: Full-time job work (kept separate)
-└── _template/               # Template for new projects
+projects/
+├── dominic-csharp-app/     # ⭐ Your C# application (side business)
+│   ├── context.md          # Project details, tech stack, architecture
+│   ├── tasks.md            # Current tasks and priorities
+│   ├── patterns.md         # C#-specific patterns discovered
+│   └── notes.md            # Architecture decisions, research notes
+├── fulltime-analytics/     # Optional: Full-time job work (separate)
+└── _template/              # Template for new projects
 
-context-snapshots/  # CRITICAL: Conversation context preservation
-└── YYYY-MM-DD-HHMM-[topic].md  # Saved contexts to restore after conversation limits
+context-snapshots/          # ⭐ CRITICAL: Conversation context preservation
+├── README.md               # How to use context snapshots
+├── TEMPLATE.md             # Template for creating snapshots
+├── examples/               # Example snapshots
+└── YYYY-MM-DD-HHMM-[topic].md  # Your saved contexts
 
-settings.local.json  # NEW: Safety permissions & plan enforcement
-ONBOARDING.md        # NEW: 5-phase setup guide
+settings.local.json         # C# development tools, Windows paths, permissions
+ONBOARDING.md              # 2-hour practical onboarding session guide
+CLAUDE.md                  # Complete documentation about you and this system
+README.md                  # This file - quick start and overview
 ```
+
+**What's NOT here yet (coming in Phase 2):**
+- `.claude/commands/` - Slash commands for automation
+- `.claude/skills/` - Automated workflows
+- `.claude/hooks/` - Event-driven automation
 
 ## Your Success Metrics (6 months)
 
