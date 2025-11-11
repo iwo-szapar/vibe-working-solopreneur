@@ -12,7 +12,7 @@ This file contains the slug of the currently active project. All agents read thi
 
 **Example:**
 ```
-client-a-ecommerce
+dominic-csharp-app
 ```
 
 **Update with:** `/switch [project-name]`
@@ -26,68 +26,37 @@ Each project has this structure:
 ```
 projects/
 └── [project-slug]/
-    ├── context.md      # Client details, constraints, preferences
+    ├── context.md      # Project details, tech stack, architecture
     ├── tasks.md        # Task tracking (open, completed, blocked)
-    ├── notes.md        # Meeting notes, decisions, ideas
-    └── patterns.md     # Project-specific patterns
+    ├── notes.md        # Architectural decisions, research notes
+    └── patterns.md     # C#-specific patterns discovered
 ```
 
 ---
 
 ## Active Projects
 
-### Client Projects
+### Primary Project (Side Business)
 
-**Client A - E-commerce Platform**
-- **Slug:** `client-a-ecommerce`
-- **Status:** Active
-- **Start date:** 2024-10-15
-- **Primary contact:** jane@clienta.com
-- **Tech stack:** Python/Django, PostgreSQL, React
-- **Deliverable:** E-commerce platform for handmade jewelry
-- **Timeline:** MVP by 2025-03-01
+**Dominic's C# Application**
+- **Slug:** `dominic-csharp-app`
+- **Status:** Active Development
+- **Start date:** [To be filled in based on your actual start date]
+- **Type:** Side business venture (building toward financial freedom)
+- **Tech stack:** C#, .NET, SQL Server/PostgreSQL, Entity Framework Core
+- **Purpose:** [To be filled in - what is this application for?]
+- **Current phase:** [To be filled in]
+- **Documentation:** Substantial documentation already generated using Claude Code
 
-**Client B - Analytics Dashboard**
-- **Slug:** `client-b-analytics`
-- **Status:** Active
-- **Start date:** 2024-11-01
-- **Primary contact:** john@clientb.com
-- **Tech stack:** Python/FastAPI, PostgreSQL, React
-- **Deliverable:** Real-time analytics dashboard
-- **Timeline:** Beta by 2025-02-15
+### Secondary Project (Optional)
 
-**Client C - Mobile App**
-- **Slug:** `client-c-mobile`
-- **Status:** Blocked (waiting for API keys)
-- **Start date:** 2024-12-10
-- **Primary contact:** sara@clientc.com
-- **Tech stack:** React Native, Node.js/Express, MongoDB
-- **Deliverable:** Mobile app for fitness tracking
-- **Timeline:** Alpha by 2025-02-28
-
-### Internal Projects
-
-**Internal Product - SaaS Platform**
-- **Slug:** `internal-product-saas`
-- **Status:** Active (dogfooding)
-- **Start date:** 2024-09-01
-- **Tech stack:** Python/FastAPI, PostgreSQL, React, Redis
-- **Deliverable:** Second Brain SaaS product
-- **Timeline:** MVP by 2025-04-01
-
-**Learning & Experimentation**
-- **Slug:** `learning-experiments`
-- **Status:** Active (ongoing)
-- **Start date:** 2024-08-01
-- **Purpose:** Test new technologies, build skills, R&D
-- **Current focus:** Redis caching, WebSockets, real-time features
-
-**Test Command Validation**
-- **Slug:** `test-command-validation`
-- **Status:** Active (testing)
-- **Start date:** 2025-11-10
-- **Purpose:** Validate /new-project command functionality
-- **Current focus:** Command testing suite
+**Full-Time Analytics Work**
+- **Slug:** `fulltime-analytics`
+- **Status:** Optional - Can be created if you want to track work and side business separately
+- **Type:** Full-time job work (Logistics & Warehousing)
+- **Purpose:** Data analysis, SQL queries, insights generation
+- **Tech stack:** SQL, data analysis tools
+- **Note:** Keep this separate from side business to avoid mixing contexts
 
 ---
 

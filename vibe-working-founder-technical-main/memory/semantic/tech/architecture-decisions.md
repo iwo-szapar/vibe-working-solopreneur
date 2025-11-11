@@ -1,35 +1,62 @@
-# Architecture Decisions & Tech Stack
+# Architecture Decisions & Tech Stack - C# Focus
 
-**Purpose:** Document your technical choices, tech stack, and architectural patterns
+**Purpose:** Document your technical choices, C# tech stack, and architectural patterns for your side business project
 
 ---
 
 ## Current Tech Stack
 
+### Core Development
+- **Language:** C# [e.g., C# 10, C# 11]
+- **Framework:** [e.g., .NET 6, .NET 7, .NET Framework 4.8]
+- **IDE:** VS Code / VS Community
+- **Platform:** Windows 10
+- **Build Tools:** MSBuild, dotnet CLI
+
 ### Backend
-- **Language:** [e.g., Python 3.11]
-- **Framework:** [e.g., FastAPI, Django, Flask]
-- **Database:** [e.g., PostgreSQL 15]
-- **Caching:** [e.g., Redis]
-- **Message Queue:** [e.g., Celery, RabbitMQ]
+- **Web Framework:** [e.g., ASP.NET Core MVC, ASP.NET Web API, Minimal APIs]
+- **ORM:** [e.g., Entity Framework Core 6.0, Dapper]
+- **Database:** [e.g., SQL Server 2019, PostgreSQL, SQLite]
+- **Authentication:** [e.g., ASP.NET Identity, JWT, OAuth]
+- **Logging:** [e.g., Serilog, NLog, Microsoft.Extensions.Logging]
 
-### Frontend
-- **Language:** [e.g., TypeScript]
-- **Framework:** [e.g., React 18, Vue, Svelte]
-- **State Management:** [e.g., Redux, Zustand]
-- **Styling:** [e.g., Tailwind CSS, styled-components]
+### Frontend (if applicable)
+- **UI Technology:** [e.g., Razor Pages, Blazor Server, Blazor WebAssembly, React + WebAPI]
+- **CSS Framework:** [e.g., Bootstrap, Tailwind CSS]
+- **JavaScript:** [If using - e.g., vanilla JS, jQuery, TypeScript]
 
-### Infrastructure
-- **Hosting:** [e.g., AWS ECS, Google Cloud Run]
-- **CI/CD:** [e.g., GitLab CI, GitHub Actions]
-- **Monitoring:** [e.g., Sentry, Datadog]
-- **Version Control:** [e.g., GitLab]
+### Database & Data Access
+- **Database Server:** [e.g., SQL Server, PostgreSQL]
+- **Migration Tool:** [e.g., EF Core Migrations, FluentMigrator]
+- **Connection Pooling:** [Built-in ADO.NET pooling]
+- **Query Performance:** [LINQ, stored procedures]
+
+### Testing
+- **Unit Testing:** [e.g., xUnit, NUnit, MSTest]
+- **Mocking:** [e.g., Moq, NSubstitute]
+- **Integration Testing:** [e.g., WebApplicationFactory]
+- **Coverage Tool:** [e.g., Coverlet, dotCover]
+
+### Version Control & DevOps
+- **VCS:** Git for Windows (version 2.51.2.windows.1)
+- **Repository:** [GitHub, GitLab, Azure DevOps, local]
+- **CI/CD:** [e.g., GitHub Actions, Azure Pipelines, GitLab CI - if using]
+- **Deployment:** [e.g., IIS, Azure App Service, Docker]
+
+### Dependencies (NuGet Packages)
+[To be filled in as you add packages]
+- **Entity Framework Core:** [version]
+- **AutoMapper:** [if using]
+- **FluentValidation:** [if using]
+- **Serilog:** [if using for logging]
+- [Other packages you're using]
 
 ---
 
 ## Key Architecture Decisions
 
-### Decision 1: [Name]
+### Decision Template
+
 **Date:** [When decided]
 **Context:** [Why this decision was needed]
 **Decision:** [What was chosen]
@@ -42,192 +69,418 @@
 - [Alternative A]: [Why not chosen]
 - [Alternative B]: [Why not chosen]
 
-**Outcome:** [How it's working, any regrets]
+**Outcome:** [How it's working so far]
 
 ---
 
-### Decision 2: Monolith vs Microservices
-**Date:** Oct 2024
-**Context:** Scaling internal product to handle 10K+ users
-**Decision:** Start with modular monolith
+### Decision 1: [Your First Major Decision]
+
+[To be filled in with your actual architectural decisions]
+
+**Example - Entity Framework Core vs Dapper:**
+**Date:** [Your date]
+**Context:** Need ORM for data access, balancing performance vs development speed
+**Decision:** Use Entity Framework Core
 **Rationale:**
-- Team of 2 can't manage microservice complexity
-- Faster iteration speed
-- Can extract services later if needed
-- All the benefits of good separation within single deployable
+- Faster development with LINQ queries
+- Built-in change tracking
+- Easy database migrations
+- Strong typing throughout
+- Good enough performance for current needs
 
 **Alternatives Considered:**
-- Microservices: Too much operational overhead for small team
-- Traditional monolith: Chose modular approach for future flexibility
+- Dapper: Rejected - more performant but requires more boilerplate code, development speed matters more at this stage
+- ADO.NET: Rejected - too low-level, would slow development significantly
 
-**Outcome:** Working well. Deployment is simple, development is fast.
+**Outcome:** [How it's working]
 
 ---
 
-## Architectural Patterns
+## Architectural Patterns (C#-Specific)
 
-### Pattern: API Design
-- RESTful endpoints for CRUD
-- GraphQL for complex data fetching (if needed)
-- Versioning: /api/v1/ prefix
-- Authentication: JWT tokens (15-20 min expiry for mobile)
+### Pattern: Project Structure
+
+**Chosen Architecture:** [e.g., Layered Architecture, Clean Architecture, N-Tier]
+
+**Project Organization:**
+```
+SolutionName/
+├── ProjectName.Domain/          # Business entities, interfaces
+│   ├── Entities/                # Domain models (User, Order, etc.)
+│   └── Interfaces/              # Repository interfaces
+├── ProjectName.Application/     # Business logic, services
+│   ├── Services/                # Business services
+│   ├── DTOs/                    # Data transfer objects
+│   └── Validators/              # FluentValidation validators
+├── ProjectName.Infrastructure/  # Data access, external services
+│   ├── Data/                    # DbContext, repositories
+│   ├── Migrations/              # EF Core migrations
+│   └── ExternalServices/        # Third-party integrations
+├── ProjectName.Web/             # Presentation layer
+│   ├── Controllers/             # MVC/API controllers
+│   ├── Views/                   # Razor views (if MVC)
+│   ├── Models/                  # View models
+│   └── wwwroot/                 # Static files
+└── ProjectName.Tests/           # Tests
+    ├── UnitTests/               # Unit tests
+    └── IntegrationTests/        # Integration tests
+```
+
+### Pattern: Dependency Injection
+
+**Standard:** Constructor injection for all dependencies
+
+**Example:**
+```csharp
+public class UserService : IUserService
+{
+    private readonly IUserRepository _userRepository;
+    private readonly ILogger<UserService> _logger;
+
+    public UserService(
+        IUserRepository userRepository,
+        ILogger<UserService> logger)
+    {
+        _userRepository = userRepository;
+        _logger = logger;
+    }
+}
+
+// In Program.cs or Startup.cs
+services.AddScoped<IUserService, UserService>();
+services.AddScoped<IUserRepository, UserRepository>();
+```
+
+### Pattern: Async/Await for I/O
+
+**Standard:** All database operations, file I/O, and HTTP requests use async/await
+
+**Example:**
+```csharp
+public async Task<User> GetUserByIdAsync(int id)
+{
+    return await _context.Users.FindAsync(id);
+}
+```
+
+### Pattern: Repository Pattern
+
+**Usage:** [Decide whether to use repository pattern or DbContext directly]
+
+**If using repositories:**
+```csharp
+public interface IUserRepository
+{
+    Task<User> GetByIdAsync(int id);
+    Task<IEnumerable<User>> GetAllAsync();
+    Task AddAsync(User user);
+    Task UpdateAsync(User user);
+    Task DeleteAsync(int id);
+}
+```
+
+### Pattern: API Design (if applicable)
+
+**Convention:**
+- RESTful endpoints: `/api/[controller]/[action]`
+- HTTP verbs: GET, POST, PUT, DELETE
+- Status codes: 200 (OK), 201 (Created), 400 (Bad Request), 404 (Not Found), 500 (Server Error)
+- Response format: JSON
+- Authentication: [JWT, Cookie-based, etc.]
 
 ### Pattern: Error Handling
-- Structured error responses (code, message, details)
-- Log to Sentry with user context
-- Never expose internal errors to clients
-- Always include request ID for debugging
 
-### Pattern: Database
-- PostgreSQL for relational data
-- Always index foreign keys
-- Use migrations (Alembic/Django migrations)
-- Connection pooling (pgBouncer for production)
+**Standard:**
+- Custom exception types for domain-specific errors
+- Global exception handler middleware
+- Structured error responses
+- Logging with Serilog/NLog
 
-### Pattern: Async Processing
-- Use Celery for background jobs
-- Keep request handlers fast (< 200ms)
-- Offload: emails, reports, large data processing
-- Idempotent tasks (safe to retry)
+**Example:**
+```csharp
+public class UserNotFoundException : Exception
+{
+    public UserNotFoundException(int userId)
+        : base($"User with ID {userId} not found.") { }
+}
+
+// In controller
+try
+{
+    var user = await _userService.GetUserAsync(id);
+    return Ok(user);
+}
+catch (UserNotFoundException ex)
+{
+    _logger.LogWarning(ex, "User not found");
+    return NotFound(new { message = ex.Message });
+}
+```
 
 ---
 
-## Technology Choices by Project
+## Database Design Patterns
 
-### Client A - E-commerce
-- **Stack:** Python/Django, PostgreSQL, React
-- **Why:** Client's existing stack, team expertise
-- **Constraints:** Must support 50K products, 1K concurrent users
+### Pattern: Entity Configuration
 
-### Client B - Analytics Platform
-- **Stack:** Python/FastAPI, PostgreSQL, React
-- **Why:** Performance critical, async endpoints needed
-- **Constraints:** GDPR compliance, 10K+ concurrent users
+**Standard:** Fluent API for entity configuration (preferred over Data Annotations)
 
-### Internal Product - SaaS
-- **Stack:** Python/FastAPI, PostgreSQL, React, Redis
-- **Why:** Full control, modern stack, great DX
-- **Constraints:** Multi-tenant, scalable to 100K users
+**Example:**
+```csharp
+public class UserConfiguration : IEntityTypeConfiguration<User>
+{
+    public void Configure(EntityTypeBuilder<User> builder)
+    {
+        builder.HasKey(u => u.Id);
+        builder.Property(u => u.Email).IsRequired().HasMaxLength(255);
+        builder.HasIndex(u => u.Email).IsUnique();
+
+        builder.HasMany(u => u.Orders)
+               .WithOne(o => o.User)
+               .HasForeignKey(o => o.UserId);
+    }
+}
+```
+
+### Pattern: Migration Strategy
+
+**Standard:**
+- Code-first migrations with EF Core
+- Descriptive migration names: `dotnet ef migrations add AddUserEmailUniqueIndex`
+- Review generated SQL before applying
+- Always test migrations in development first
+
+### Pattern: Database Indexing
+
+**Standards:**
+- Index all foreign keys
+- Index frequently queried columns
+- Consider composite indexes for common query patterns
+- Use `EXPLAIN` / `INCLUDE` to analyze query plans
 
 ---
 
-## Conventions & Standards
-
-### Code Organization
-```
-backend/
-├── api/           # API routes
-├── models/        # Database models
-├── services/      # Business logic
-├── utils/         # Shared utilities
-└── tests/         # Tests (mirror structure)
-```
+## Code Quality & Standards
 
 ### Naming Conventions
-- **Variables:** snake_case
-- **Functions:** verb_noun (get_user, create_order)
-- **Classes:** PascalCase
-- **Constants:** UPPER_SNAKE_CASE
 
-### Documentation
-- Docstrings for all public functions
-- README.md in each major directory
-- Architecture diagrams (draw.io) in /docs
+**C# Standards:**
+- **Classes:** PascalCase (e.g., `UserService`, `OrderRepository`)
+- **Interfaces:** IPascalCase (e.g., `IUserService`)
+- **Methods:** PascalCase with verb (e.g., `GetUserById`, `CreateOrder`)
+- **Properties:** PascalCase (e.g., `UserId`, `EmailAddress`)
+- **Private fields:** _camelCase (e.g., `_userRepository`, `_logger`)
+- **Local variables:** camelCase (e.g., `userId`, `userName`)
+- **Constants:** PascalCase or UPPER_SNAKE_CASE (e.g., `MaxRetryCount` or `MAX_RETRY_COUNT`)
 
-### Testing
-- Unit tests for business logic
-- Integration tests for APIs
-- Target: 80%+ coverage on critical paths
-- Use pytest (Python), Jest (JavaScript)
+### Documentation Standards
+
+**Requirements:**
+- XML documentation comments for all public APIs
+- Inline comments for complex logic
+- README.md in project root
+
+**Example:**
+```csharp
+/// <summary>
+/// Retrieves a user by their unique identifier.
+/// </summary>
+/// <param name="userId">The unique identifier of the user.</param>
+/// <returns>The user if found; otherwise, null.</returns>
+/// <exception cref="ArgumentException">Thrown when userId is less than or equal to zero.</exception>
+public async Task<User> GetUserAsync(int userId)
+{
+    // Implementation
+}
+```
+
+### Testing Standards
+
+**Goals:**
+- 70%+ code coverage on critical business logic
+- 100% coverage on data access layer
+- Integration tests for API endpoints
+
+**Pattern: AAA (Arrange-Act-Assert)**
+```csharp
+[Fact]
+public async Task GetUserAsync_WithValidId_ReturnsUser()
+{
+    // Arrange
+    var userId = 1;
+    var service = CreateServiceWithMocks();
+
+    // Act
+    var result = await service.GetUserAsync(userId);
+
+    // Assert
+    Assert.NotNull(result);
+    Assert.Equal(userId, result.Id);
+}
+```
 
 ---
 
 ## Security Patterns
 
-### Authentication
-- JWT tokens (access + refresh)
-- Access token: 15-20 min expiry (mobile), 5-10 min (web)
-- Refresh token: 7 days expiry
-- Store refresh tokens server-side (Redis)
+### Authentication & Authorization
 
-### Authorization
-- Role-based access control (RBAC)
-- Permissions checked at API layer
-- Never trust client-side validation
+**Standards:**
+- [Your auth strategy: e.g., ASP.NET Identity, JWT, OAuth]
+- Password hashing: [e.g., BCrypt, PBKDF2, built-in Identity hasher]
+- Token expiry: [e.g., 60 minutes for access tokens]
+- HTTPS only in production
 
 ### Data Protection
-- Encrypt sensitive data at rest (PII, payments)
-- TLS for all connections
-- Secrets in environment variables (never in code)
-- Regular security audits
+
+**Standards:**
+- Never store sensitive data in code or config files
+- Use User Secrets for development
+- Use environment variables or Azure Key Vault for production
+- Encrypt sensitive data at rest
+- Validate and sanitize all user input
+
+### SQL Injection Prevention
+
+**Standard:** Use parameterized queries or LINQ (EF Core)
+
+**Good:**
+```csharp
+var user = await _context.Users
+    .Where(u => u.Email == email)
+    .FirstOrDefaultAsync();
+```
+
+**Bad (never do this):**
+```csharp
+var query = $"SELECT * FROM Users WHERE Email = '{email}'"; // SQL injection risk!
+```
 
 ---
 
 ## Performance Patterns
 
+### Database Query Optimization
+
+**Standards:**
+- Use `.AsNoTracking()` for read-only queries
+- Eager load related data with `.Include()` to avoid N+1 queries
+- Use pagination for large result sets
+- Monitor query performance with SQL Profiler
+
+**Example:**
+```csharp
+// Good - eager loading
+var users = await _context.Users
+    .Include(u => u.Orders)
+    .AsNoTracking()
+    .ToListAsync();
+
+// Bad - lazy loading (N+1 queries)
+var users = await _context.Users.ToListAsync();
+// Accessing user.Orders later causes additional queries
+```
+
 ### Caching Strategy
-- Redis for session data, API responses
-- Cache-aside pattern (check cache, fetch DB, update cache)
-- TTL based on data volatility (users: 1 hour, static: 1 day)
 
-### Database Optimization
-- Always index foreign keys
-- Use EXPLAIN ANALYZE for slow queries
-- Connection pooling (max 20 connections per instance)
-- Read replicas for heavy read workloads
+[If using caching]
+- **Memory Cache:** For frequently accessed, slowly changing data
+- **Distributed Cache:** [e.g., Redis] for multi-instance scenarios
+- **Cache Duration:** Based on data volatility
 
-### Frontend Performance
-- Code splitting (route-based)
-- Lazy loading for non-critical components
-- Image optimization (WebP, lazy load)
-- Bundle size budget: < 200KB initial load
+### Async Best Practices
+
+**Standards:**
+- Use async/await for all I/O operations
+- Never use `.Result` or `.Wait()` (can cause deadlocks)
+- Use `ConfigureAwait(false)` in library code (not usually needed in ASP.NET Core)
 
 ---
 
-## Deployment Patterns
+## Deployment & DevOps Patterns
 
-### CI/CD Pipeline
-```
-Commit → GitLab CI
-  → Run tests
-  → Build Docker image
-  → Deploy to staging (auto)
-  → Deploy to production (manual approval)
-```
+### Build & Release
 
-### Zero-Downtime Deployment
-- Blue-green deployment for production
-- Database migrations run before deployment
-- Health checks before routing traffic
+**Process:**
+1. Local development & testing
+2. Commit to feature branch
+3. [CI/CD pipeline - if configured]
+4. Deploy to staging
+5. Manual testing
+6. Deploy to production
 
-### Rollback Strategy
-- Keep last 3 versions deployable
-- Automated rollback if health checks fail
-- Manual rollback via GitLab CI
+### Configuration Management
+
+**Development:**
+- Use `appsettings.Development.json`
+- User Secrets for sensitive data
+
+**Production:**
+- Environment variables
+- [Azure App Settings, AWS Parameter Store, or similar]
+
+### Database Migrations
+
+**Process:**
+1. Create migration: `dotnet ef migrations add [Name]`
+2. Review generated SQL
+3. Test in development
+4. Apply to staging
+5. Backup production database
+6. Apply to production
+
+---
+
+## Technology Decisions by Need
+
+[Document specific technology choices and why]
+
+### [Decision Area - e.g., "Validation"]
+
+**Options Considered:**
+1. **FluentValidation:** Powerful, flexible, separates validation from models
+2. **Data Annotations:** Simpler, built-in, but less flexible
+3. **Manual validation:** Most control, but most work
+
+**Decision:** [Your choice]
+**Reason:** [Why you chose it]
 
 ---
 
 ## Lessons Learned
 
-### What Works Well
-- FastAPI for new projects (great DX, performance)
-- PostgreSQL for everything (relational data is 90% of use cases)
-- React for complex UIs (ecosystem is mature)
-- Docker for deployment (consistent environments)
+### What's Working Well
 
-### What We Avoid
-- Microservices (too early, too complex for team size)
-- NoSQL unless strong reason (adds complexity)
-- Custom authentication (use proven libraries)
-- Premature optimization (profile first)
+[To be filled in as you discover what works]
+- [Pattern or tool that's working well]
+- [Why it's helping]
 
-### What We'd Change
-- Start with TypeScript from day 1 (Python + JS/TS hybrid is good)
-- More upfront API design (prevents breaking changes)
-- Better monitoring from start (add observability early)
+### What's Challenging
+
+[To be filled in as you encounter challenges]
+- [Challenge you're facing]
+- [How you're addressing it]
+
+### What You'd Change
+
+[Future improvements based on experience]
+- [What you'd do differently]
+- [Why]
 
 ---
 
-**Last Updated:** [Date]
-**Maintained By:** Luca
-**Review Frequency:** Quarterly (or when major decisions made)
+## Evolution & Updates
+
+**Review Frequency:** Monthly or when making major architectural decisions
+
+**Update Process:**
+1. Make architectural decision
+2. Document in this file
+3. Update relevant patterns
+4. Share learnings via `/learn` command
+
+---
+
+**Last Updated:** 2025-11-11
+**Maintained By:** Dominic
+**Project:** dominic-csharp-app
