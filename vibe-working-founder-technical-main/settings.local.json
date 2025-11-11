@@ -1,0 +1,75 @@
+{
+  "$schema": "https://cdn.jsdelivr.net/gh/anthropics/claude-code@main/schema/settings.schema.json",
+  "version": "1.0.0",
+  "description": "Luca's Second Brain - Settings optimized for safety and knowledge compounding",
+
+  "hooks": {
+    "userPromptSubmit": ".claude/hooks/user-prompt-submit.sh"
+  },
+
+  "permissions": {
+    "description": "Safety-first permissions",
+    "allow": [
+      "Read",
+      "Write",
+      "Edit",
+      "Grep",
+      "Glob",
+      "Bash(git *:*)",
+      "Bash(ls:*)",
+      "Bash(pwd:*)",
+      "Bash(echo:*)",
+      "Bash(cat:*)",
+      "Bash(mkdir:*)",
+      "Bash(chmod:*)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(npm *:*)",
+      "Bash(node *:*)",
+      "Bash(python *:*)",
+      "Bash(pytest *:*)",
+      "Bash(pip *:*)",
+      "Bash(go *:*)",
+      "Bash(make *:*)",
+      "Bash(docker *:*)",
+      "Bash(docker-compose *:*)",
+      "WebFetch(https://github.com/*)",
+      "WebFetch(https://docs.anthropic.com/*)",
+      "WebFetch(https://docs.claude.com/*)"
+    ],
+    "deny": [
+      "Bash(rm -rf:*)",
+      "Bash(rm -r *:*)",
+      "Bash(mv * /dev/null:*)",
+      "Bash(dd:*)",
+      "Bash(mkfs:*)",
+      "Bash(sudo:*)",
+      "Bash(su:*)",
+      "Bash(curl:*)",
+      "Bash(wget:*)",
+      "Bash(nc:*)",
+      "Bash(netcat:*)",
+      "Bash(>/etc/*:*)",
+      "Bash(*; rm:*)",
+      "Bash(*&& rm:*)",
+      "Bash(chmod 777:*)",
+      "WebFetch(*)"
+    ]
+  },
+
+  "paths": {
+    "ignore": [
+      "node_modules/**",
+      ".git/**",
+      "dist/**",
+      "build/**",
+      ".next/**",
+      "__pycache__/**",
+      "*.pyc",
+      ".DS_Store",
+      ".env",
+      ".env.*",
+      "*.log"
+    ]
+  }
+}
