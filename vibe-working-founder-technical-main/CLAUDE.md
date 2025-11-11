@@ -4,25 +4,26 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-**Luca's Second Brain** - Knowledge management system using three-layer architecture: Commands → Skills → Memory.
+**Dominic's Second Brain** - Knowledge management system using three-layer architecture: Commands → Skills → Memory.
 
-**Core Purpose:** Persistent second brain that extracts patterns from work and applies them automatically across projects.
+**Core Purpose:** Persistent second brain that extracts patterns from C# development work, preserves context across conversations, and eliminates copy/paste friction between browser and IDE.
 
-## User Profile: Luca
+## User Profile: Dominic
 
 **Role & Context:**
-- 41-year-old founder/CEO of 2-person IT services company
-- Technical background: comfortable with automation, APIs, CLIs, MCPs
+- 44-year-old Analytics & Data professional in Logistics & Warehousing
+- Works for 75-person company (full-time) + building side business venture
+- Technical background: Non-coder with years of industry experience, learning C# development
 - Works hybrid (remote + on-site)
-- Uses AI multiple times daily (currently saves 4-6 hr/week)
+- Uses Claude multiple times daily for 6 months (currently saves 20 hr/week)
 
 **Work Domains (Multi-Hat):**
-- Software development & R&D
-- Client project management (multiple simultaneous clients)
-- Content creation (blog, LinkedIn, video)
-- Product management & feature planning
-- Sales & business development
-- Learning & exploring new technologies
+- C# application development (side business - primary focus)
+- Data analysis and SQL query generation (full-time job)
+- Documentation generation from code
+- Research assistance and scenario planning
+- Business strategy for side venture
+- Learning C# patterns and best practices
 
 **Communication Style Preferences:**
 - Professional, objective, technically accurate
@@ -32,25 +33,28 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Appreciates when AI disagrees if technically correct
 
 **Key Pain Points:**
-- Context overload across multiple projects/scopes
-- Manual documentation burden (especially during calls)
-- Idea loss due to capture friction
-- Time spent on task tracking and prioritization (1.5hr/day)
-- Feeling overwhelmed, difficulty bringing everything to completion
+- **CRITICAL: Context loss between conversations** due to conversation limits (PRIMARY ISSUE)
+- Copy/paste friction from browser to IDE slowing development
+- Managing increasing complexity in C# project
+- Need for better, more accurate code generation
+- Context re-explanation takes significant time in new conversations
+- Want to speed up side business development significantly
 
 **Current AI Maturity:**
-- 40% augmentation, 0% automation (growth opportunity)
-- Primary tools: Cursor (multiple models), Claude app, Gemini
-- Uses AI for: learning, technical decisions, code, content drafting
-- Impact rating: 4/5 (significant, hard to work without)
-- Psychological impact: +4 (faster, more confident) / -2 (sometimes detached)
+- 100% augmentation, 0% automation (HIGHLY MATURE USER)
+- Primary tool: Claude ONLY (multiple times per day for 6 months)
+- Uses AI for: C# code generation, SQL queries, data analysis, research, scenario planning, documentation
+- Impact rating: 5/5 (can't imagine work without it - significant impact)
+- Time saved: 20 hours per week (highly effective usage)
+- Psychological impact: +4 (faster deliverables, increased productivity) / -3 (frustrated by conversation limits)
 
-**Content & Documentation Standards:**
-- Never publish client-specific info without approval
-- Never use swear words or attack people directly
-- Code must balance DB query vs Python/backend processing
-- Always explain logic via code comments
-- Prefer component patterns for consistency
+**Code & Documentation Standards:**
+- Follow C# naming conventions and best practices
+- Always include XML documentation comments for public methods
+- Explain complex logic via inline comments
+- Prioritize code readability and maintainability
+- Use async/await patterns appropriately
+- Follow SOLID principles where applicable
 
 **Decision-Making Pattern:**
 - Explores pros/cons via AI dialogue
@@ -60,35 +64,38 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Decisions impact self primarily, team secondarily (scale: 2/5)
 
 **6-Month Success Vision:**
-- Personal AI assistant for all work domains
-- Voice-based idea capture (including while driving) - 2hr/week saved
-- Automated task tracking across projects - 1hr/week saved
-- Morning dashboard with urgent items - 30min/day saved
-- Real-time documentation updates
-- Consistent content production (blog → LinkedIn → video)
-- Partial customer support automation
-- Feel less overwhelmed, more in control
+- Build side business significantly faster and more efficiently
+- Zero context loss between conversations (context preservation working perfectly)
+- Better, more accurate C# code generation with less copy/paste
+- Comprehensive documentation automatically maintained
+- C# patterns library growing and being applied automatically
+- Enhanced data analysis capabilities with automated SQL generation
+- Achieving financial freedom goals through efficient development
+- Tools and workflows that adapt and evolve with project complexity
 
 **Integration Ecosystem:**
-- Primary: Fibery (PM), GitLab (code), Google Drive (docs)
-- Secondary: Pipedrive CRM, LinkedIn Sales Navigator
-- Voice: macOS dictation (Fn Fn) or mobile app
-- Prefers: CLI/terminal interfaces over GUI when possible
+- Primary: VS Code / VS Community (C# development), Git for Windows
+- Development: .NET SDK, C# compiler, NuGet package manager
+- Database: SQL Server / PostgreSQL (for data analysis)
+- Voice: Windows dictation (Win+H) or Claude mobile app
+- Platform: Windows 10 (native, not WSL)
+- Prefers: Direct IDE integration, minimal copy/paste workflow
 
 **Learning & Risk Management:**
 - Experimental mindset, incremental implementation
 - Spots issues early before they cascade
-- Requires version control for all text-based support
+- Requires version control for all code
 - Needs confirmation for critical actions
-- Prefers fallback to external tools (Fibery, GitLab) with AI as translator
+- Values incremental progress over big-bang changes
+- Prefers preserving context to avoid rework
 
 **Next Workflow Priorities (Post-Foundation):**
-1. Feature planning
-2. Test writing
-3. Content planning
-4. Internal project management
-5. Product documentation/wiki
-6. Sales/onboarding automation
+1. C# code generation and review automation
+2. Context preservation system (highest priority)
+3. Data analysis and SQL query generation
+4. C# unit test generation
+5. Architecture documentation automation
+6. Pattern extraction from existing C# codebase
 
 ## Architecture
 

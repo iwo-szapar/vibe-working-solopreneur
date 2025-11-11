@@ -1,14 +1,14 @@
 {
   "$schema": "https://cdn.jsdelivr.net/gh/anthropics/claude-code@main/schema/settings.schema.json",
   "version": "1.0.0",
-  "description": "Luca's Second Brain - Settings optimized for safety and knowledge compounding",
+  "description": "Dominic's Second Brain - Settings optimized for C# development, data analysis, and context preservation",
 
   "hooks": {
     "userPromptSubmit": ".claude/hooks/user-prompt-submit.sh"
   },
 
   "permissions": {
-    "description": "Safety-first permissions",
+    "description": "Safety-first permissions for C# development and data analysis",
     "allow": [
       "Read",
       "Write",
@@ -24,18 +24,23 @@
       "Bash(chmod:*)",
       "Bash(find:*)",
       "Bash(grep:*)",
+      "Bash(dotnet *:*)",
+      "Bash(msbuild *:*)",
+      "Bash(nuget *:*)",
+      "Bash(csc *:*)",
+      "Bash(sqlcmd *:*)",
       "Bash(npm *:*)",
       "Bash(node *:*)",
       "Bash(python *:*)",
       "Bash(pytest *:*)",
       "Bash(pip *:*)",
-      "Bash(go *:*)",
-      "Bash(make *:*)",
       "Bash(docker *:*)",
       "Bash(docker-compose *:*)",
       "WebFetch(https://github.com/*)",
       "WebFetch(https://docs.anthropic.com/*)",
-      "WebFetch(https://docs.claude.com/*)"
+      "WebFetch(https://docs.claude.com/*)",
+      "WebFetch(https://learn.microsoft.com/*)",
+      "WebFetch(https://docs.microsoft.com/*)"
     ],
     "deny": [
       "Bash(rm -rf:*)",
@@ -69,7 +74,17 @@
       ".DS_Store",
       ".env",
       ".env.*",
-      "*.log"
+      "*.log",
+      "bin/**",
+      "obj/**",
+      "*.suo",
+      "*.user",
+      ".vs/**",
+      "packages/**",
+      "*.cache",
+      "*.dll",
+      "*.exe",
+      "*.pdb"
     ]
   }
 }
