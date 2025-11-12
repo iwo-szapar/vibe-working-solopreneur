@@ -144,10 +144,10 @@ SolutionName/
 
 **Daily Workflow:**
 1. Check `/overview` for urgent tasks
-2. Use `/context-save` before conversation limits
-3. Apply learned patterns from `patterns.md`
-4. Run `/learn` after completing features
-5. Commit code with meaningful messages
+2. Apply learned patterns from `patterns.md`
+3. Run `/learn` after completing features to document in memory/episodic/
+4. Commit code with meaningful messages
+5. Use @-mentions to restore context in new conversations
 
 **Code Standards:**
 - XML documentation comments for public methods
@@ -225,7 +225,7 @@ SolutionName/
 **What Claude should know:**
 1. **Developer Level:** Non-coder with industry experience, learning C# development
 2. **Time Constraints:** Limited time due to full-time job, need efficient solutions
-3. **Primary Pain Point:** Context loss between conversations (use context-snapshots!)
+3. **Primary Pain Point:** Context loss between conversations (use @memory/ mentions to restore!)
 4. **Learning Style:** Practical, hands-on, prefers working examples
 5. **Code Preferences:**
    - Readability over cleverness
@@ -234,7 +234,7 @@ SolutionName/
    - XML documentation for public APIs
 
 **Integration with Second Brain:**
-- Always suggest `/context-save` when approaching conversation limits
+- Always suggest `/learn` to document completed work in memory/episodic/
 - Extract patterns to `patterns.md` after completing features
 - Link decisions to this context file
 - Update tasks in `tasks.md` as work progresses

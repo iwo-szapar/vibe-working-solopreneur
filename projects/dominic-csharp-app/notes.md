@@ -435,4 +435,4 @@ Set up Second Brain repository customized for C# development with context preser
 - Don't overthink it - just capture what's useful
 - Review periodically and move important items to proper locations
 - Archive old notes when they're no longer relevant
-- Use context-snapshots/ for detailed work-in-progress context
+- Use `/learn` to document completed work in memory/episodic/ and @-mention to restore context

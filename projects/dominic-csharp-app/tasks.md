@@ -149,7 +149,7 @@ Track tasks by type for better organization:
 1. **Be Specific:** "Implement user authentication" → "Implement JWT token generation with 60min expiry"
 2. **Estimate Time:** Helps with planning and tracking velocity
 3. **Note Dependencies:** Avoid starting tasks that are blocked
-4. **Use Context-Save:** For complex tasks, save context before conversation limit
+4. **Document After Completion:** Use `/learn` to save work in memory/episodic/
 5. **Link to Patterns:** Reference patterns.md when applicable
 6. **Review Regularly:** Don't let this list become stale
 
@@ -157,8 +157,8 @@ Track tasks by type for better organization:
 
 ## Integration with Second Brain
 
-- **After completing task:** Run `/learn` to extract patterns
-- **Before conversation limit:** Save task context to `context-snapshots/`
+- **After completing task:** Run `/learn` to extract patterns and save to memory/episodic/
+- **Starting new conversation:** Use @-mentions to load context from memory/episodic/
 - **Task complexity > 15 min:** Use `/plan [task]` → `/step` workflow
 - **Pattern discovered:** Document in `patterns.md`
 - **Architecture decision:** Update `context.md`
@@ -181,7 +181,8 @@ Track tasks by type for better organization:
 
 ## Notes
 
-- Use `context-snapshots/` for task context if approaching conversation limit
+- Use `/learn` to document completed work in memory/episodic/ after finishing tasks
+- Use @-mentions to restore task context in new conversations
 - Review and update this file at least weekly
 - Don't be afraid to delete tasks that are no longer relevant
 - Celebrate completed tasks - you're making progress!

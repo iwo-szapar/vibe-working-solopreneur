@@ -47,12 +47,12 @@ Your AI-powered second brain that compounds knowledge across all your work domai
 
 **Morning - Start with Full Context:**
 ```
-You: "I'm working on [C# project]. Let me restore context:"
-     [Share: projects/dominic-csharp-app/context.md]
-     [Share: projects/dominic-csharp-app/patterns.md]
-     [Share: context-snapshots/2025-11-12-latest.md]
+You: "I'm working on [C# project]. Let me load context:"
+     @projects/dominic-csharp-app/context.md
+     @projects/dominic-csharp-app/patterns.md
+     @memory/episodic/completed-work/2025-11-12-latest.md
 
-Claude: [Reads all files, understands full context]
+Claude: [Automatically reads all @-mentioned files, understands full context]
 
 You: "I need to add user authentication to my C# app"
 
@@ -65,15 +65,15 @@ Claude: [Generates code using YOUR patterns, YOUR style, YOUR architecture]
 - Discuss architectural decisions (I'll reference your docs)
 - Get help with debugging using project context
 
-**Before Conversation Limit - Save Context:**
+**After Completing Work - Document in Memory:**
 ```
-1. Create file: context-snapshots/2025-11-12-1530-auth-module.md
-2. Fill in template (3-5 minutes):
-   - Current task and progress
-   - Code in progress
-   - Decisions made
-   - Next steps
-3. Next conversation: Share this file to restore context instantly
+1. Use /learn command (or manually create): memory/episodic/completed-work/2025-11-12-auth-module.md
+2. Document (3-5 minutes):
+   - What was completed
+   - Key decisions made
+   - Patterns used or discovered
+   - Code examples (if relevant)
+3. Next conversation: @-mention this file to load context instantly
 ```
 
 **Pattern Discovery - Build Your Library:**
@@ -107,9 +107,9 @@ Rather than slash commands (coming later), use natural conversation with file sh
    - Mark confidence: LOW (first use) → MEDIUM (3 uses) → HIGH (5+ uses)
 
 5. **Save Context:**
-   - Use template in `context-snapshots/TEMPLATE.md`
-   - Create new file before conversation limit
-   - Restore in next conversation by sharing the file
+   - Use `/learn` command after completing work
+   - Document in `memory/episodic/completed-work/`
+   - Restore in next conversation by @-mentioning the file
 
 **Future Enhancement - Slash Commands:**
 Commands like `/learn`, `/overview`, `/switch` will be added in Phase 2 for automated workflows
@@ -161,11 +161,11 @@ projects/
 ├── fulltime-analytics/     # Optional: Full-time job work (separate)
 └── _template/              # Template for new projects
 
-context-snapshots/          # ⭐ CRITICAL: Conversation context preservation
-├── README.md               # How to use context snapshots
-├── TEMPLATE.md             # Template for creating snapshots
-├── examples/               # Example snapshots
-└── YYYY-MM-DD-HHMM-[topic].md  # Your saved contexts
+memory/                     # ⭐ CRITICAL: Knowledge storage & context preservation
+├── episodic/               # What you've done (completed work with full context)
+│   └── completed-work/     # Document work here, @-mention to restore context
+├── semantic/               # What you know (patterns, decisions, tech stack)
+└── procedural/             # How you do things (workflows, processes)
 
 settings.local.json         # C# development tools, Windows paths, permissions
 ONBOARDING.md              # 2-hour practical onboarding session guide
@@ -190,7 +190,7 @@ README.md                  # This file - quick start and overview
 **Quality improvements:**
 - Better, more accurate C# code generation
 - Consistent patterns across your growing codebase
-- Zero context loss between conversations (via context-snapshots)
+- Zero context loss between conversations (via @memory/ mentions)
 - Less copy/paste friction (direct IDE integration workflow)
 - Smarter end results with context-aware assistance
 
@@ -209,7 +209,7 @@ README.md                  # This file - quick start and overview
 
 ### 📅 Week 1: Core Workflows & Context Preservation
 1. Run `/overview` each morning to see your tasks
-2. Practice `/context-save` before conversation limits (CRITICAL!)
+2. Document work in `memory/episodic/completed-work/` after sessions (CRITICAL!)
 3. Try `/plan [goal]` → `/step` for complex C# features
 4. Run `/learn` after completing work to extract patterns
 5. Check `/grow` for brain health
@@ -223,7 +223,7 @@ README.md                  # This file - quick start and overview
 ### 🔧 Week 3: Advanced Features & Optimization
 1. Customize permissions in `settings.local.json` for your tools
 2. Set up regular `/learn` ritual after coding sessions
-3. Create context snapshot habit before hitting conversation limits
+3. Build habit: document completed work in `memory/episodic/` daily
 4. Review and refine your C# patterns (LOW → MEDIUM → HIGH confidence)
 
 ## Platform-Specific Setup
@@ -246,14 +246,14 @@ README.md                  # This file - quick start and overview
 - **CLAUDE.md** - Complete system documentation
 - **windows-setup.md** - Windows-specific setup and configuration
 - **settings.local.json** - Safety permissions & C# development tools
-- **context-snapshots/README.md** - How to preserve context between conversations
+- **memory/README.md** - Memory structure and how to use @-mentions for context preservation
 
 ## Support
 
 - **First time?** → Read ONBOARDING.md
 - **Complex C# feature?** → Use `/plan [goal]` → `/step`
-- **Hit conversation limit?** → Use `/context-save` BEFORE limit
-- **Starting new conversation?** → Use `/context-restore` to resume
+- **Ending session?** → Run `/learn` to document work in memory/
+- **Starting new conversation?** → @-mention files from memory/episodic/ to restore context
 - **Need a SQL query?** → Use `/query [question]`
 - **Check progress** → Run `/grow`
 - **Understand architecture** → Read CLAUDE.md
